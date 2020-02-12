@@ -23,7 +23,7 @@ def model():
     g.parse('turtle/demo/Brick_expanded.ttl', format='turtle')
 
     # Read file describing our data types and relationships for build information
-    g.parse('turtle/build/Build_extension.ttl', format='turtle')
+    g.parse('turtle/buildinfo/Build_extension.ttl', format='turtle')
 
     g.bind('rdf', RDF)
     g.bind('rdfs', RDFS)

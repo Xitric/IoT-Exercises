@@ -3,7 +3,7 @@ from rdflib import Literal
 from wrapper import *
 
 # The file to store our triplets inside once we have created some concrete data
-TTL_FILENAME = 'turtle/build/Build_generated.ttl'
+TTL_FILENAME = 'turtle/buildinfo/Build_generated.ttl'
 
 g = model()
 

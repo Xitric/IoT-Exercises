@@ -1,0 +1,45 @@
+@prefix build: <https://github.com/Xitric/IoT-Exercises/releases/tag/v1.0.0/Metadata/Build#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix brick: <https://brickschema.org/schema/1.1.0/Brick#> .
+
+build:repository a owl:Class .
+
+# Defines a branch type which must belong to a repository through the branchIn property (I think)
+build:branch a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty build:branchIn ;
+        owl:allValuesFrom build:repository
+    ] .
+
+# Defines a property for linking branches to repositories (I think)
+build:branchIn a owl:ObjectProperty ;
+    rdfs:domain build:branch ;
+    rdfs:range build:repository .
+
+# Defines a commit type which must belong to a branch through the commitTo property (I think)
+build:commit a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty build:commitTo ;
+        owl:allValuesFrom build:branch
+    ] .
+
+# Defines a property for linking commits to branches (I think)
+build:commitTo a owl:ObjectProperty ;
+    rdfs:domain build:commit ;
+    rdfs:range build:branch .
+
+# Defines a property for assigning a string id to a commit (I think)
+build:hasId a owl:DatatypeProperty ;
+    rdfs:domain build:commit ;
+    rdfs:range xsd:string .
+
+# Defines a property for telling which commit is currently running on a sensor (I think)
+build:runningCodeFrom a owl:ObjectProperty ;
+    rdfs:domain brick:Sensor ;
+    rdfs:range build:commit .
