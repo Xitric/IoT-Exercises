@@ -212,3 +212,4 @@ dmypy.json
 *.pyi
 venv/
 WirelessUplink/Sender/secrets.py
+*.pdf
