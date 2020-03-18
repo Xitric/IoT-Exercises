@@ -13,7 +13,7 @@ class Scenario:
                 self.maxTime = time
 
     def __to_scenario_time(self, simulation_time: float):
-        return simulation_time / 24 * self.maxTime
+        return simulation_time / 1440 * self.maxTime
 
     def __find_time_index(self, scenario_time: float):
         # Perform a binary search
@@ -37,7 +37,7 @@ class Scenario:
         if self.scenario[index][0] == scenario_time:
             return self.scenario[index][1]
         elif index == 0:
-            return self.scenario[index][1] * scenario_time / self.scenario[index][0]
+            return self.scenario[index][1] * scenario_time / scenario_time
         else:
             val_diff = self.scenario[index][1] - self.scenario[index - 1][1]
             time_diff = self.scenario[index][0] - self.scenario[index - 1][0]
