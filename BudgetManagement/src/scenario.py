@@ -22,14 +22,14 @@ class Scenario:
         while left <= right:
             mid = (left + right) // 2  # Floor division
             if self.scenario[mid][0] == scenario_time:
-                break
+                return mid
             elif self.scenario[mid][0] < scenario_time:
                 left = mid + 1
             else:
                 right = mid - 1
 
         # Where the element should have been
-        return mid
+        return left
 
     def sample(self, simulation_time: float):
         scenario_time = self.__to_scenario_time(simulation_time)
@@ -37,7 +37,7 @@ class Scenario:
         if self.scenario[index][0] == scenario_time:
             return self.scenario[index][1]
         elif index == 0:
-            return self.scenario[index][1] * scenario_time / scenario_time
+            return self.scenario[index][1] * scenario_time / self.scenario[index][0]
         else:
             val_diff = self.scenario[index][1] - self.scenario[index - 1][1]
             time_diff = self.scenario[index][0] - self.scenario[index - 1][0]
